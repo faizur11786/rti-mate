@@ -1,0 +1,10 @@
+POST http://localhost:3000/api/apply
+content-type: application/json
+
+{
+    "name": "Faizur",
+    "email": "faizur11786@w.com",
+    "mobile":"80XXXX01",
+    "fatherName":"XYZ",
+    "address":"ABC",
+}
