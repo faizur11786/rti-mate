@@ -6,5 +6,9 @@ content-type: application/json
     "email": "faizur11786@w.com",
     "mobile":"80XXXX01",
     "fatherName":"XYZ",
-    "address":"ABC",
+    "address":"ABC"
 }
+
+###
+
+GET : http://localhost:3000/api/apply

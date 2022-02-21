@@ -56,11 +56,8 @@ async function createArtical ( artical, userID ) {
 }
 
 async function createUser ( user ) {
-  const { name, email, mobile } = user;
   let userData = {
-    name,
-    email,
-    mobile,
+    ...user,
     arnNo: await generateId( "BR" ),
     role: "user"
   }

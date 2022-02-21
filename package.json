@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "couponjs": "^0.8.19",
+    "dotenv": "^16.0.0",
     "mongoose": "^6.2.2",
     "next": "12.1.0",
     "react": "17.0.2",
