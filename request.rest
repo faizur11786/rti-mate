@@ -2,13 +2,16 @@ POST http://localhost:3000/api/apply
 content-type: application/json
 
 {
-    "name": "Faizur",
-    "email": "faizur11786@w.com",
-    "mobile":"80XXXX01",
+    "applicant": "Faizur",
+    "email": "faizur6@w.com",
+    "mobile":"8251610901",
     "fatherName":"XYZ",
-    "address":"ABC"
+    "address":"madhopur chansadjhsadbjashd sdfkjbdsakf",
+    "rtiQuery":"Next.js API Routes Validation using YUP: Share frontend and backend validation using YUP schemas",
+    "organizationAddress":"organizationAddress organizationAddress organizationAddress ",
+    "orgState":"orgState"
 }
 
 ###
 
-GET : http://localhost:3000/api/apply
+GET http://localhost:3000/api/login

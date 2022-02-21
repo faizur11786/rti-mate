@@ -3,13 +3,15 @@ import User from './User'
 
 /* articleSchema will correspond to a collection in your MongoDB database. */
 const ArticleSchema = new mongoose.Schema( {
-    applicant: {
-        type: String,
-        required: [true, 'Please provide a Applicant Name for this article.'],
-    },
+    applicant: { type: String },
     fatherName: { type: String },
     motherName: { type: String },
+    mobile: { type: String },
     address: { type: String },
+    rtiQuery: { type: String },
+    organizationAddress: { type: String },
+    orgState: { type: String },
+    arnNo: { type: String },
     belongTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
