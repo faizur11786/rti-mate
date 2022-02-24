@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "applicant": "Faizur",
-    "email": "faizur6@w.com",
+    "email": "faizur634324@w.com",
     "mobile":"8251610901",
     "fatherName":"XYZ",
     "address":"madhopur chansadjhsadbjashd sdfkjbdsakf",
@@ -13,5 +13,14 @@ content-type: application/json
 }
 
 ###
-
 GET http://localhost:3000/api/login
+
+###
+GET http://localhost:3000/api/user
+content-type: application/json
+Authorization: "hello"
+
+###
+
+GET http://localhost:3000/api/article-detail
+Authorization: "hello"

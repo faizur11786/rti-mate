@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import dbConnect from "../../lib/mongodb";
-import articleSchema from "../../lib/schema/articalSchema";
+import articleSchema from "../../lib/validators/articalSchema";
 import Article from "../../models/Article";
 import User from "../../models/User";
 import generateId from "../../utils/generateId";

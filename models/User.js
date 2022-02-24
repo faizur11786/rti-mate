@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-/* articleSchema will correspond to a collection in your MongoDB database. */
+/* UserSchema will correspond to a collection in your MongoDB database. */
 const UserSchema = new mongoose.Schema( {
     name: { type: String },
     email: { type: String },
