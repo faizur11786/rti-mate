@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema( {
         type: String,
         required: [true, 'Please provide a role for this article.'],
     },
-    refNum: { type: String },
+    referenceNo: { type: String },
 }, {
     timestamps: true
 } )
