@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import dbConnect from "../../lib/mongodb";
 import articleSchema from "../../lib/validators/articalSchema";
-import Article from "../../models/Article";
-import User from "../../models/User";
+import Article from "../../models/article";
+import User from "../../models/user";
 import generateId from "../../utils/generateId";
 
 export default async function handler ( req, res ) {
@@ -24,7 +24,7 @@ export default async function handler ( req, res ) {
           // CREATE NEW USER, ARTICAL AND RETURN RESPONSE
           const user = await createUser( req.body )
           const article = await createArtical( req.body, user._id );
-          await User.findOneAndUpdate( { _id: user._id }, { refNum: article.arnNo } )
+          await User.findOneAndUpdate( { _id: user._id }, { referenceNo: article.referenceNo } )
           return res
             .status( 200 )
             .json( {
@@ -35,7 +35,7 @@ export default async function handler ( req, res ) {
 
         // // // CREATE ARTICAL WITH EXISTSING USER AND RETURN RESPONSE
         const article = await createArtical( req.body, userExists._id );
-        await User.findOneAndUpdate( { _id: userExists._id }, { refNum: article.arnNo } )
+        await User.findOneAndUpdate( { _id: userExists._id }, { referenceNo: article.referenceNo } )
         return res
           .status( 200 )
           .json( {
@@ -58,7 +58,7 @@ async function createArtical ( artical, userID ) {
   let newArticle = {
     applicant: artical.name,
     ...artical,
-    arnNo: await generateId( "BR" ),
+    referenceNo: await generateId( "BR" ),
     belongTo: userID,
   }
   const article = await Article.create( newArticle )
