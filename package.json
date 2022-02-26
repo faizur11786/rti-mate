@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "couponjs": "^0.8.19",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.2",
     "next": "12.1.0",
     "next-connect": "^0.12.2",
+    "razorpay": "^2.8.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "^1.2.2",

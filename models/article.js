@@ -19,7 +19,8 @@ const ArticleSchema = new mongoose.Schema( {
     payment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'payment',
-    }
+    },
+    status: { type: String },
 }, {
     timestamps: true,
 } )
