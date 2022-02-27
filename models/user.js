@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-/* articleSchema will correspond to a collection in your MongoDB database. */
+/* UserSchema will correspond to a collection in your MongoDB database. */
 const UserSchema = new mongoose.Schema( {
     name: { type: String },
     email: { type: String },
@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema( {
         type: String,
         required: [true, 'Please provide a role for this article.'],
     },
-    refNum: { type: String },
+    referenceNo: { type: String },
 }, {
     timestamps: true
 } )

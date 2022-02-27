@@ -1,10 +1,13 @@
-import Layout from '../components/Layout'
-import '../styles/globals.scss'
+import { Container, Layout } from '../components/Layout';
+import '../styles/globals.css';
+
 
 function MyApp ( { Component, pageProps } ) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
     </Layout>
   )
 }

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import User from './User'
 
 /* articleSchema will correspond to a collection in your MongoDB database. */
 const ArticleSchema = new mongoose.Schema( {
@@ -7,15 +6,21 @@ const ArticleSchema = new mongoose.Schema( {
     fatherName: { type: String },
     motherName: { type: String },
     mobile: { type: String },
+    email: { type: String },
     address: { type: String },
     rtiQuery: { type: String },
     organizationAddress: { type: String },
     orgState: { type: String },
-    arnNo: { type: String },
+    referenceNo: { type: String },
     belongTo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-    }
+    },
+    payment: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'payment',
+    },
+    status: { type: String },
 }, {
     timestamps: true,
 } )
