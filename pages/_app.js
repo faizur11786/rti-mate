@@ -1,4 +1,5 @@
-import { Container, Layout } from '../components/Layout';
+import { Container, Layout } from '@/components/Layout';
+
 import '../styles/globals.css';
 
 
