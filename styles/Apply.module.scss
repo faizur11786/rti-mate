@@ -1,0 +1,43 @@
+.apply_form {
+    padding: 4rem 0;
+    .container {
+    }
+}
+
+.row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+    .col {
+        max-width: 50%;
+        flex: 1 1 auto;
+        @media (max-width: 768px) {
+            max-width: 100%;
+        }
+
+        .heading {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0 3rem 0;
+            &_number {
+                border: 1px solid #6b5edb;
+                width: 45px;
+                height: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                font-size: 20px;
+                font-weight: bold;
+                color: #6b5edb;
+            }
+        }
+    }
+}
