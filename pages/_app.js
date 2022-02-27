@@ -1,7 +1,7 @@
-
-
 import { Container, Layout } from '@/components/Layout';
+
 import '../styles/globals.css';
+
 
 function MyApp ( { Component, pageProps } ) {
   return (
@@ -14,3 +14,4 @@ function MyApp ( { Component, pageProps } ) {
 }
 
 export default MyApp
+
