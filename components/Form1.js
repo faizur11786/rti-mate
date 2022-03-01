@@ -2,10 +2,19 @@ import TextArea from './TextArea'
 import Textinput from './Textinput'
 import styles from '../styles/Form.module.scss'
 
-const Form = () => {
+const Form1 = () => {
     return (
         <>
-
+            <div className={styles.heading1}>
+                <div className={styles.heading_col}>
+                    <span className={styles.heading_number1}> 1 </span>
+                    <p className={styles.heading_text}>Personal Details</p>
+                </div>
+                <div className={styles.heading_col}>
+                    <span className={styles.heading_number2}> 2 </span>
+                    <p className={styles.heading_text}> RTI Details </p>
+                </div>
+            </div>
             <form action="" className={styles.form}>
                 <div className={styles.row}>
                     <div className={styles.col}>
@@ -20,11 +29,11 @@ const Form = () => {
                     </div>
 
                     <div className={styles.col}>
-                        <label htmlFor="">Father's/Husband's Name</label>
+                        <label htmlFor="" className={styles.label}>Father's/Husband's Name <span>*</span></label>
                         <div className={styles.father}>
                             <div className={styles.father_row}>
                                 <div className={styles.father_col}>
-                                    <input type="radio" className={styles.btn_check} name="btnradio" id="father" checked />
+                                    <input type="radio" className={styles.btn_check} name="btnradio" id="father" />
                                     <label className={styles.checked} for="father">Father's Name</label>
                                 </div>
                                 <div className={styles.father_col}>
@@ -33,9 +42,8 @@ const Form = () => {
                                 </div>
                             </div>
                             <input type="text" placeholder='Enter Father/Husband Name' className={styles.input} />
-
                         </div>
-                        <span>Provide Father's/Husband's Name</span>
+                        <span className={styles.text}>Provide Father's/Husband's Name</span>
                     </div>
 
                     <div className={styles.col}>
@@ -69,7 +77,12 @@ const Form = () => {
                         />
                     </div>
                     <div className={styles.col}>
-                        <button className='btn btn-primary'> Continue</button>
+                        <button className='btn btn-primary btn-flex'> Continue
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -77,4 +90,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default Form1

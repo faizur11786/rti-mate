@@ -1,6 +1,9 @@
-import Form from "../components/Form";
+import Form1 from "../components/Form1";
 import styles from '../styles/Apply.module.scss';
 import Image from "next/image";
+import Form2 from "@/components/Form2";
+// import Header from "@/components/Footer";
+
 
 
 const Apply = () => {
@@ -11,11 +14,8 @@ const Apply = () => {
                     <div className={styles.container}>
                         <div className={styles.row}>
                             <div className={styles.col}>
-                                <div className={styles.heading}>
-                                    <span className={styles.heading_number}> 1 </span>
-                                    <p className={styles.heading_text}>Personal Details</p>
-                                </div>
-                                <Form />
+                                <Form1 />
+                                {/* <Form2 /> */}
                             </div>
                             <div className={styles.col}>
                                 <div className={styles.Image}>

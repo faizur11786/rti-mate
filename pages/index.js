@@ -49,7 +49,7 @@ export default function Home () {
 
     <div className={styles.container}>
       <h2>1. APPLY API CRAETED BY NEXT.JS BUT IT'S NOT READY FOR PRODUCTION. I'M CURRENTLY WORKING ON IT.</h2>
-      <button onClick={OpenRezorpay}>Pay RS.100</button>
+      <button onClick={OpenRezorpay} className="btn btn-primary">Pay RS.100</button>
     </div>
   )
 }
