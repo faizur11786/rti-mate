@@ -47,3 +47,16 @@ li {
     background: #5b4af0;
   }
 }
+.btn-secondary {
+  color: white;
+  background: #707070;
+}
+.btn-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  svg {
+    fill: white;
+  }
+}

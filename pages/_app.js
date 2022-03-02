@@ -1,6 +1,7 @@
-import { Container, Layout } from '@/components/Layout';
+import Layout from '@/components/Layout';
+import Container from '@/components/Layout/Container';
 
-import '../styles/globals.css';
+import '../styles/globals.scss';
 
 
 function MyApp ( { Component, pageProps } ) {
@@ -10,7 +11,7 @@ function MyApp ( { Component, pageProps } ) {
         <Component {...pageProps} />
       </Container>
     </Layout>
-  )
+  );
 }
 
 export default MyApp
