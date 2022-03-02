@@ -1,7 +1,14 @@
 import authRoute from "../../lib/middlewares/authRoute";
 import restHandler from "../../lib/restHandler";
 
-export default restHandler.use( authRoute ).post( async ( req, res ) => {
+import nextConnect from "next-connect";
+
+const handler = nextConnect()
+
+handler.use( authRoute )
+
+
+export default handler.use( authRoute ).post( async ( req, res ) => {
     try {
         const {
             orderCreationId,

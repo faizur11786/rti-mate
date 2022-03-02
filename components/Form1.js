@@ -34,11 +34,11 @@ const Form1 = () => {
                             <div className={styles.father_row}>
                                 <div className={styles.father_col}>
                                     <input type="radio" className={styles.btn_check} name="btnradio" id="father" />
-                                    <label className={styles.checked} for="father">Father's Name</label>
+                                    <label className={styles.checked} htmlFor="father">Father's Name</label>
                                 </div>
                                 <div className={styles.father_col}>
                                     <input type="radio" className={styles.btn_check} name="btnradio" id="husband" />
-                                    <label className={styles.checked} for="husband">Husband's Name</label>
+                                    <label className={styles.checked} htmlFor="husband">Husband's Name</label>
                                 </div>
                             </div>
                             <input type="text" placeholder='Enter Father/Husband Name' className={styles.input} />

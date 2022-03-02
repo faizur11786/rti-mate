@@ -1,9 +1,14 @@
 import authRoute from "../../../lib/middlewares/authRoute";
 import restHandler from "../../../lib/restHandler";
 import Razorpay from "razorpay";
-import { createOrder } from "../../../lib/db/payment";
+import nextConnect from "next-connect";
+import { createOrder } from "@/lib/db/payment";
 
-export default restHandler.use( authRoute ).post( async ( req, res ) => {
+const handler = nextConnect()
+
+handler.use( authRoute )
+
+export default handler.post( async ( req, res ) => {
     const { amount } = req.body;
 
     if ( !amount ) {

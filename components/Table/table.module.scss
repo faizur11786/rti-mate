@@ -1,0 +1,14 @@
+
+.tableContainer{
+    overflow: auto;
+}
+
+.table{
+    width: 100%;
+    thead{
+        background-color: #cdddff;
+        th{
+            padding: 1rem;
+        }
+    }
+}

@@ -8,6 +8,9 @@
             "@/page-components/*": [
                 "page-components/*"
             ],
+            "@/lib/*": [
+                "lib/*"
+            ],
         }
     }
 }

@@ -1,4 +1,4 @@
-import { getUserArticles, getUserArtileByRefNo } from "../../../lib/db/article";
+import { getUserArticles, getUserArtileByRefNo } from "@/lib/db/article";
 import authRoute from "../../../lib/middlewares/authRoute";
 import restHandler from "../../../lib/restHandler";
 
