@@ -1,3 +1,4 @@
+import ProtectRoutes from 'HOC/ProtectRoutes'
 import React from 'react'
 
 const EditPIO = () => {
@@ -6,4 +7,4 @@ const EditPIO = () => {
     )
 }
 
-export default EditPIO
+export default ProtectRoutes( EditPIO, ["admin"] )

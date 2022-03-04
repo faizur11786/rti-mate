@@ -1,4 +1,5 @@
 import Table from '@/components/Table';
+import ProtectRoutes from 'HOC/ProtectRoutes';
 import React from 'react'
 import styles from "./add.module.scss";
 
@@ -19,4 +20,4 @@ const AddPIO = () => {
     )
 }
 
-export default AddPIO
+export default ProtectRoutes( AddPIO, ["admin"] )

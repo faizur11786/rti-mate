@@ -1,4 +1,5 @@
 import Table from "@/components/Table";
+import ProtectRoutes from "HOC/ProtectRoutes";
 import styles from "./pio.module.scss";
 const AddPIO = () => {
     return (
@@ -15,4 +16,4 @@ const AddPIO = () => {
     )
 }
 
-export default AddPIO
+export default ProtectRoutes( AddPIO, ["user", "admin"] )
