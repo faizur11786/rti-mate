@@ -1,8 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.scss'
 import axios from "axios"
-import useSWR from 'swr'
-import { useSelector, useDispatch } from 'react-redux'
 
 const loadScript = async ( url ) => {
   return new Promise( ( resolve ) => {
@@ -20,9 +18,11 @@ const loadScript = async ( url ) => {
 
 
 export default function Home () {
-  const { token, user } = useSelector( state => state.auth )
-  const dispatch = useDispatch()
+  // const { token, user } = useSelector( state => state.auth )
+  // const dispatch = useDispatch()
+  // console.log( "token", token );
   const [amount, setAmount] = useState( 0 )
+  const [first, setFirst] = useState( [] )
   const OpenRezorpay = async ( e ) => {
     e.preventDefault()
     const sdk = await loadScript( 'https://checkout.razorpay.com/v1/checkout.js' )
@@ -30,12 +30,12 @@ export default function Home () {
     if ( !sdk ) {
       return alert( 'Failed to load Razorpay SDK! Please reload page' )
     }
-    const result = await axios.post( "http://localhost:3000/api/payment/create", {
+    const result = await axios.post( "/api/payment/create", {
       amount: amount * 100,
     },
       {
         headers: {
-          "Authorization": `"${token}"`,
+          // "Authorization": `"${token}"`,
         }
       }
     )
@@ -61,6 +61,11 @@ export default function Home () {
     const payObject = new window.Razorpay( options )
     payObject.open()
   }
+
+  useEffect( async () => {
+    const data = await fetch( 'https://jsonplaceholder.typicode.com/users' ).then( res => res.json() );
+    setFirst( data )
+  }, [] )
 
   return (
 

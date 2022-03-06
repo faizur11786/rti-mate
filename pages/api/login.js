@@ -4,8 +4,10 @@ import jwt from "jsonwebtoken"
 const key = "hdskfjbdsofg"
 import loginSchema from "../../lib/validators/loginSchema"
 import User from "../../models/user"
+import nextConnect from "next-connect"
+const handler = nextConnect()
 
-export default restHandler.post( async ( req, res ) => {
+export default handler.post( async ( req, res ) => {
     await dbConnect()
     try {
         await loginSchema.validate( req.body, { abortEarly: false } )

@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import jwt from 'jsonwebtoken'
 import { useRouter } from 'next/router'
+import { useAppContext } from 'context/AppContext'
 export default ( WrappedComponent, access ) => {
     const hocComponent = ( { ...props } ) => {
         const router = useRouter()
-        const state = useSelector( state => state )
+        const { state: { auth: { token } } } = useAppContext()
         // Decode Token
-        const decode = jwt.decode( state.auth.token || null )
-        if ( !decode ) {
-            router.push( '/login' )
-        }
+        const decode = jwt.decode( token || null )
+
         if ( decode && !access.includes( decode.role ) ) {
             return (
                 <div style={{ textAlign: "center", minHeight: "40vh", margin: "4rem" }}>
@@ -19,12 +18,16 @@ export default ( WrappedComponent, access ) => {
                 </div>
             )
         }
+        useEffect( () => {
+            if ( !token ) {
+                router.push( '/login' )
+            }
+        }, [decode] )
+
         if ( router.asPath === '/login' ) {
             router.push( '/dashboard' )
         }
-        return (
-            <WrappedComponent {...props} />
-        )
+        return <WrappedComponent {...props} />
     }
     return hocComponent
 }

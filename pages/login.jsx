@@ -1,17 +1,20 @@
 import { Login } from '@/page-components/Auth';
-import ProtectRoutes from 'HOC/ProtectRoutes';
+import { useAppContext } from 'context/AppContext';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 const LoginPage = () => {
     const router = useRouter()
-    const state = useSelector( state => state )
+
+    const { state: { auth: { token } } } = useAppContext()
+
 
     useEffect( () => {
-        state.auth.token && router.push( '/dashboard' )
-    }, [] )
+        token && router.back()
+    }, [token] )
+
+
     return (
         <>
             <Head>

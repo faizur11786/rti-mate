@@ -1,15 +1,16 @@
 import TextInput from '@/components/Textinput'
-import ProtectRoutes from 'HOC/ProtectRoutes'
+import { login } from 'actions/auth'
+import { useAppContext } from 'context/AppContext'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
-import { login } from 'redux/actions/auth'
 import styles from './auth.module.scss'
 
 const Login = () => {
     const router = useRouter()
-    const dispatch = useDispatch()
+
+    const { dispatch } = useAppContext();
+
     const [values, setValues] = useState( {
         email: 'user12@gmail.com',
         referenceNo: 'RTIM5593892734BR'
@@ -18,7 +19,7 @@ const Login = () => {
     const loginhandler = ( e ) => {
         toast.dismiss()
         e.preventDefault()
-        toast.promise( dispatch( login( values ) ), {
+        toast.promise( login( values, dispatch ), {
             loading: 'Please Wait...',
             success: ( res ) => {
                 if ( res.status === 200 ) {
@@ -41,12 +42,12 @@ const Login = () => {
                         name="Email"
                         type="email"
                         placeholder='Enter your Email Id'
-                        value={values.email}
+                        defaultValue={values.email}
                         required />
                     <TextInput label="Ref No."
                         name="referenceNo"
                         type="text"
-                        value={values.referenceNo}
+                        defaultValue={values.referenceNo}
                         placeholder='Enter your Refrance No.'
                         required />
                     <button type='submit' className="btn btn-primary">Login</button>
