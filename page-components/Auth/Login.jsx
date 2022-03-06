@@ -22,9 +22,7 @@ const Login = () => {
         toast.promise( login( values, dispatch ), {
             loading: 'Please Wait...',
             success: ( res ) => {
-                if ( res.status === 200 ) {
-                    router.push( '/dashboard' )
-                }
+                router.push( '/dashboard' )
                 return res.data.message
             },
             error: err => err.message,
