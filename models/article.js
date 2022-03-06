@@ -9,7 +9,7 @@ const ArticleSchema = new mongoose.Schema( {
     email: { type: String },
     address: { type: String },
     rtiQuery: { type: String },
-    organizationAddress: { type: String },
+    orgAddress: { type: String },
     orgState: { type: String },
     referenceNo: { type: String },
     belongTo: {

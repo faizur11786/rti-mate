@@ -5,6 +5,7 @@ import nextConnect from "next-connect";
 import { createOrder } from "@/lib/db/payment";
 
 const handler = nextConnect()
+handler.use( authRoute )
 
 
 export default handler.post( async ( req, res ) => {
