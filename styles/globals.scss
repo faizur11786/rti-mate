@@ -5,7 +5,18 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: aliceblue;
+  background-color: #fafafa;
+}
+span{
+  color: rgb(117, 117, 117);
+}
+h1,h2,h3,h4,h5,h6{
+   color: rgb(63, 63, 63);
+}
+svg{
+  width: 18px;
+  height: 18px;
+  fill: rgb(63, 63, 63);
 }
 
 a {
