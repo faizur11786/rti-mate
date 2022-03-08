@@ -40,12 +40,14 @@ const Login = () => {
                         name="Email"
                         type="email"
                         placeholder='Enter your Email Id'
-                        defaultValue={values.email}
+                        value={values.email}
+                        onChange={( e ) => setValues( { ...values, email: e.target.value } )}
                         required />
                     <TextInput label="Ref No."
                         name="referenceNo"
                         type="text"
                         defaultValue={values.referenceNo}
+                        onChange={( e ) => setValues( { ...values, referenceNo: e.target.value } )}
                         placeholder='Enter your Refrance No.'
                         required />
                     <button type='submit' className="btn btn-primary">Login</button>
