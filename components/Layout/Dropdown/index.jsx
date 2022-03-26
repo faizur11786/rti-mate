@@ -6,7 +6,6 @@ const Dropdown = ( { className, label, text, ...props } ) => {
         <div className={styles.field}>
             {label && <div className={styles.label}>{label}</div>}
             <div className={styles.wrap}>
-
             </div>
         </div>
     );
