@@ -2,7 +2,8 @@ export const initialState = {
     auth: {
         token: "",
         user: {}
-    }
+    },
+    form: {}
 };
 export const AppReducer = ( state, action ) => {
     switch ( action.type ) {
@@ -18,6 +19,21 @@ export const AppReducer = ( state, action ) => {
                 ...state,
                 auth: { ...state.auth, token: action.payload },
             };
+        case "SAVE_FORM_DATA":
+            return {
+                ...state,
+                form: { ...state.form, [action.payload.name]: action.payload.value }
+            };
+        case "REMOVE_FORM_DATA":
+            return {
+                ...state,
+                form: { ...state.form, [action.payload.name]: "" }
+            };
+        case "CLEAR_FORM_DATA":
+            return {
+                ...state,
+                form: {}
+            }
         case "LOGOUT":
             return { ...state, auth: { user: "", token: "" } }
     }

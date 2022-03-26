@@ -7,7 +7,6 @@ import React from 'react'
 const ArticleDetail = ( props ) => {
     const router = useRouter()
     const { refNo } = router.query
-    console.log( "props", refNo );
     return (
         <>
             <Head>
