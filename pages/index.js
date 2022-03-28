@@ -62,10 +62,6 @@ export default function Home () {
     payObject.open()
   }
 
-  useEffect( async () => {
-    const data = await fetch( 'https://jsonplaceholder.typicode.com/users' ).then( res => res.json() );
-    setFirst( data )
-  }, [] )
 
   return (
 

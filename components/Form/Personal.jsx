@@ -6,7 +6,8 @@ import css from "./index.module.scss"
 
 const PersonalDetalsForm = ( { setIsOpen } ) => {
 
-    const { dispatch } = useAppContext();
+    const { state, dispatch } = useAppContext();
+    const { applicant, email, mobile, address } = state.form
     const [parent, setParent] = useState( null );
 
     const updateParent = ( e ) => {
@@ -24,6 +25,8 @@ const PersonalDetalsForm = ( { setIsOpen } ) => {
         }
     }
 
+    console.log( "data", state.form );
+
     const submiteForm = ( e ) => {
         e.preventDefault()
         setIsOpen( 2 )
@@ -37,6 +40,7 @@ const PersonalDetalsForm = ( { setIsOpen } ) => {
                             onChange={( e ) => {
                                 dispatch( { type: "SAVE_FORM_DATA", payload: { name: "applicant", value: e.target.value } } )
                             }}
+                            defaultValue={applicant}
                             label="Applicant Name"
                             name="applicant"
                             type="text"
@@ -63,25 +67,12 @@ const PersonalDetalsForm = ( { setIsOpen } ) => {
                         </div>
                         <span className={css.text}>Provide Father&apos;s/Husband&apos;s Name</span>
                     </div>
-
-                    <div className={css.col}>
-                        <TextInput
-                            onChange={( e ) => {
-                                dispatch( { type: "SAVE_FORM_DATA", payload: { name: "mobile", value: e.target.value } } )
-                            }}
-                            label="Mobile Number"
-                            name="mobile"
-                            type="number"
-                            placeholder='Enter Mobile Number'
-                            text="Provide 10 digit Mobile Number Without Zero"
-                            required
-                        />
-                    </div>
                     <div className={css.col}>
                         <TextInput
                             onChange={( e ) => {
                                 dispatch( { type: "SAVE_FORM_DATA", payload: { name: "email", value: e.target.value } } )
                             }}
+                            defaultValue={email}
                             label="Email Id"
                             name="email"
                             type="email"
@@ -91,10 +82,25 @@ const PersonalDetalsForm = ( { setIsOpen } ) => {
                         />
                     </div>
                     <div className={css.col}>
+                        <TextInput
+                            onChange={( e ) => {
+                                dispatch( { type: "SAVE_FORM_DATA", payload: { name: "mobile", value: e.target.value } } )
+                            }}
+                            defaultValue={mobile}
+                            label="Mobile Number"
+                            name="mobile"
+                            type="number"
+                            placeholder='Enter Mobile Number'
+                            text="Provide 10 digit Mobile Number Without Zero"
+                            required
+                        />
+                    </div>
+                    <div className={css.col}>
                         <TextArea
                             onChange={( e ) => {
                                 dispatch( { type: "SAVE_FORM_DATA", payload: { name: "address", value: e.target.value } } )
                             }}
+                            defaultValue={address}
                             label="Your Address with PIN Code "
                             name="address"
                             type="address"
