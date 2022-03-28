@@ -59,7 +59,7 @@ async function createArtical ( artical, userID ) {
   let newArticle = {
     applicant: artical.name,
     ...artical,
-    referenceNo: await generateId( "BR" ),
+    referenceNo: await generateId( artical.isoCode ),
     belongTo: userID,
   }
   const article = await Article.create( newArticle )

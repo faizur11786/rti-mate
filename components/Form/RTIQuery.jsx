@@ -6,11 +6,11 @@ import toast from 'react-hot-toast';
 import css from "./index.module.scss"
 import TextArea from '../TextArea';
 
-const RTIQueryForm = () => {
+const RTIQueryForm = ( { setIsOpen } ) => {
 
     const { state, dispatch } = useAppContext();
-    const [data, setData] = useState( null )
-    const [isLoading, setLoading] = useState( false )
+    const { orgState, rtiQuery, orgAddress } = state.form
+
 
     const submiteForm = ( e ) => {
         toast.dismiss()
@@ -18,11 +18,10 @@ const RTIQueryForm = () => {
         toast.promise( createArticle( state.form ), {
             loading: 'Please Wait...',
             success: ( res ) => {
-                setLoading( false )
+
                 return res.data.message
             },
             error: err => {
-                setLoading( false )
                 if ( Array.isArray( err.error ) ) {
                     err.error.forEach( error => {
                         toast.error( error )
@@ -31,6 +30,8 @@ const RTIQueryForm = () => {
             },
         } )
     }
+
+    console.log( "data", state );
 
     return (
         <>
@@ -60,6 +61,7 @@ const RTIQueryForm = () => {
                             onChange={( e ) => {
                                 dispatch( { type: "SAVE_FORM_DATA", payload: { name: "rtiQuery", value: e.target.value } } )
                             }}
+                            defaultValue={rtiQuery}
                             label="Your RTI Query/Questions "
                             name="RTI Query"
                             type="text"
@@ -73,6 +75,7 @@ const RTIQueryForm = () => {
                             onChange={( e ) => {
                                 dispatch( { type: "SAVE_FORM_DATA", payload: { name: "orgAddress", value: e.target.value } } )
                             }}
+                            defaultValue={orgAddress}
                             label="Name and Address of Organization where you want to file RTI"
                             name="RTI Query"
                             type="Address"
@@ -83,7 +86,11 @@ const RTIQueryForm = () => {
                     </div>
                     <div className={css.col}>
                         <div className={css.btn_group}>
-                            <button type='button' className='btn btn-secondary btn-flex'>
+                            <button
+                                type='button'
+                                className='btn btn-secondary btn-flex' onClick={() => {
+                                    setIsOpen( 1 )
+                                }}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                     <path fill="none" d="M0 0h24v24H0z" />
                                     <path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z" />
