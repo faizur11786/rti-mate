@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { State, } from 'country-state-city';
+import { State } from 'country-state-city';
 import { useAppContext } from 'context/AppContext';
 import { createArticle } from 'actions/app';
 import toast from 'react-hot-toast';
 import css from "./index.module.scss"
 import TextArea from '../TextArea';
+import { loadScript } from 'utils';
+import axios from 'axios';
 
 const RTIQueryForm = ( { setIsOpen } ) => {
 
@@ -12,13 +13,55 @@ const RTIQueryForm = ( { setIsOpen } ) => {
     const { orgState, rtiQuery, orgAddress } = state.form
 
 
+    const OpenRezorpay = async ( res ) => {
+        const { applicant } = res.article
+        const { auth: { user } } = state
+        const sdk = await loadScript( 'https://checkout.razorpay.com/v1/checkout.js' )
+
+        if ( !sdk ) {
+            return alert( 'Failed to load Razorpay SDK! Please reload page' )
+        }
+        let amount = 599;
+        const result = await axios.post( "/api/payment/create", {
+            amount: amount * 100,
+            articleId: res.article._id,
+        } );
+
+        console.log( result.data.order );
+        const { id, currency, amount: _amount } = result.data.order
+        const options = {
+            key: "rzp_test_6iPgcJxAqs4LRu",
+            amount: _amount.toString(),
+            currency: currency,
+            name: applicant,
+            description: rtiQuery,
+            order_id: id,
+            // image: "https://i.imgur.com/3g7nmJC.png",
+            handler: async function ( response ) {
+                const data = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                };
+
+                console.log( "data ", data, response );
+                const result = await axios.post( "/api/payment/success", data );
+                console.log( "result", result );
+                // alert( result.data.msg );
+            },
+        }
+        const payObject = new window.Razorpay( options )
+        payObject.open()
+    }
+
     const submiteForm = ( e ) => {
         toast.dismiss()
         e.preventDefault()
         toast.promise( createArticle( state.form ), {
             loading: 'Please Wait...',
             success: ( res ) => {
-
+                OpenRezorpay( res.data )
                 return res.data.message
             },
             error: err => {
@@ -30,8 +73,6 @@ const RTIQueryForm = ( { setIsOpen } ) => {
             },
         } )
     }
-
-    console.log( "data", state );
 
     return (
         <>

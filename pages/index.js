@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.scss'
 import axios from "axios"
+import { useAppContext } from 'context/AppContext'
 
 const loadScript = async ( url ) => {
   return new Promise( ( resolve ) => {
@@ -18,9 +19,7 @@ const loadScript = async ( url ) => {
 
 
 export default function Home () {
-  // const { token, user } = useSelector( state => state.auth )
-  // const dispatch = useDispatch()
-  // console.log( "token", token );
+  const { state: { auth: { user } } } = useAppContext();
   const [amount, setAmount] = useState( 0 )
   const [first, setFirst] = useState( [] )
   const OpenRezorpay = async ( e ) => {
@@ -38,9 +37,7 @@ export default function Home () {
           // "Authorization": `"${token}"`,
         }
       }
-    )
-    // const { data } = useSWR( '/api/payment/create', fetcher )
-    console.log( result );
+    );
 
     const options = {
       key: "rzp_test_6iPgcJxAqs4LRu",

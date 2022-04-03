@@ -15,6 +15,10 @@ export default handler.post( async ( req, res ) => {
             razorpayPaymentId,
             razorpayOrderId,
             razorpaySignature } = req.body
+
+
+
+
         res.json( { data: "success FUnk", ffunkcthisshit: req.body } );
     } catch ( error ) {
         res.status( 500 ).json( { message: "Something went wrong", error } )
