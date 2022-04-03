@@ -3,13 +3,14 @@ import restHandler from "../../../lib/restHandler";
 import Razorpay from "razorpay";
 import nextConnect from "next-connect";
 import { createOrder } from "@/lib/db/payment";
+import { updataArticle } from "@/lib/db/article";
 
 const handler = nextConnect()
-handler.use( authRoute )
+// handler.use( authRoute )
 
 
 export default handler.post( async ( req, res ) => {
-    const { amount } = req.body;
+    const { amount, articleId } = req.body;
 
     if ( !amount ) {
         return res.status( 400 ).json( { message: "Amount is required" } )
@@ -33,7 +34,10 @@ export default handler.post( async ( req, res ) => {
         if ( !order ) {
             res.status( 400 ).json( { message: "Order not created" } )
         }
-        await createOrder( order )
+        const _order = await createOrder( order )
+        await updataArticle( articleId, {
+            payment: _order._id
+        } )
         return res.status( 201 ).json( { message: "Order created successfully", order } )
     } catch ( error ) {
         res.status( 500 ).json( { message: "Something went wrong", error } )
