@@ -10,7 +10,7 @@ const handler = nextConnect()
 
 
 export default handler.post( async ( req, res ) => {
-    const { amount, articleId } = req.body;
+    const { amount, articleId, referenceNo } = req.body;
 
     if ( !amount ) {
         return res.status( 400 ).json( { message: "Amount is required" } )
@@ -28,7 +28,7 @@ export default handler.post( async ( req, res ) => {
         const options = {
             amount: amount * 100,
             currency: "INR",
-            receipt: "order_rcptid_11",
+            receipt: referenceNo,
         }
         const order = await instance.orders.create( options )
         if ( !order ) {
