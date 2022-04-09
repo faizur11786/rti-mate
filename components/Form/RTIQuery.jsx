@@ -6,16 +6,19 @@ import css from "./index.module.scss"
 import TextArea from '../TextArea';
 import { loadScript } from 'utils';
 import axios from 'axios';
+import { login } from 'actions/auth';
+import { useRouter } from 'next/router';
 
 const RTIQueryForm = ( { setIsOpen } ) => {
-
+    const router = useRouter()
     const { state, dispatch } = useAppContext();
     const { orgState, rtiQuery, orgAddress } = state.form
 
 
     const OpenRezorpay = async ( res ) => {
-        const { applicant } = res.article
+        const { applicant, _id, referenceNo, email } = res.article;
         const { auth: { user } } = state
+
         const sdk = await loadScript( 'https://checkout.razorpay.com/v1/checkout.js' )
 
         if ( !sdk ) {
@@ -23,11 +26,11 @@ const RTIQueryForm = ( { setIsOpen } ) => {
         }
         let amount = 599;
         const result = await axios.post( "/api/payment/create", {
-            amount: amount * 100,
-            articleId: res.article._id,
+            amount: amount,
+            articleId: _id,
+            referenceNo: referenceNo,
         } );
 
-        console.log( result.data.order );
         const { id, currency, amount: _amount } = result.data.order
         const options = {
             key: "rzp_test_6iPgcJxAqs4LRu",
@@ -38,17 +41,23 @@ const RTIQueryForm = ( { setIsOpen } ) => {
             order_id: id,
             // image: "https://i.imgur.com/3g7nmJC.png",
             handler: async function ( response ) {
-                const data = {
-                    orderCreationId: order_id,
-                    razorpayPaymentId: response.razorpay_payment_id,
-                    razorpayOrderId: response.razorpay_order_id,
-                    razorpaySignature: response.razorpay_signature,
-                };
-
-                console.log( "data ", data, response );
-                const result = await axios.post( "/api/payment/success", data );
-                console.log( "result", result );
-                // alert( result.data.msg );
+                if ( response.razorpay_order_id ) {
+                    const result = await axios.get( `/api/payment/verify?orderId=${response.razorpay_order_id}` );
+                    if ( result.data.order.success ) {
+                        const value = {
+                            email,
+                            referenceNo
+                        }
+                        toast.promise( login( value, dispatch ), {
+                            loading: 'Payment Successful...',
+                            success: ( res ) => {
+                                router.push( '/dashboard' )
+                                return res.data.message
+                            },
+                            error: err => err.message,
+                        } )
+                    }
+                }
             },
         }
         const payObject = new window.Razorpay( options )
