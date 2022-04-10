@@ -7,7 +7,7 @@ import css from "./index.module.scss"
 const PersonalDetalsForm = ( { setIsOpen } ) => {
 
     const { state, dispatch } = useAppContext();
-    const { applicant, email, mobile, address } = state.form
+    const { applicant, email, mobile, address } = state?.form
     const [parent, setParent] = useState( null );
 
     const updateParent = ( e ) => {
@@ -24,8 +24,6 @@ const PersonalDetalsForm = ( { setIsOpen } ) => {
                 break;
         }
     }
-
-    console.log( "data", state.form );
 
     const submiteForm = ( e ) => {
         e.preventDefault()
