@@ -1,8 +1,8 @@
-import Layout from '@/components/Layout';
-import Container from '@/components/Layout/Container';
+import Container from '@/components/Container';
 import '../styles/globals.scss';
 import { Toaster } from 'react-hot-toast';
 import { AppWrapper } from 'context/AppContext';
+import Layout from 'layout/public';
 
 
 function MyApp ( { Component, pageProps } ) {
